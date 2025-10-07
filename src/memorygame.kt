@@ -80,3 +80,5 @@ fun showPositions(showedPairs: Int, secretPairs: List<Pair<Int, Int>>): List<Pai
 fun allReveal(showedPairs: Int): Boolean {}
 
 fun endMessage(tries: Int, secretPairs: List<Pair<Int, Int>>) {}
+
+seu gay
