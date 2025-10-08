@@ -16,7 +16,7 @@ fun main() {
                 showedPairs = view
                 if (allReveal(showedPairs)) break
             }
-            else printTemporarily(textOfTry(tries, view), 4)
+            else printTemporarily(textOfTry(tries, view).toString(), 4)
             tries++
         } else println("Posições inválidas")
     } while( tries <= MAX_TRIES )
@@ -29,16 +29,16 @@ fun printTemporarily(text: String, seconds: Int) {
 }
 
 // Gera uma lista, ou uma String, com os pares de símbolos distribuídos aleatoriamente.
-fun generateSecretPairs(): List<String> {
-    var symbolList = listOf<String>()
-    symbolList = listOf((SYMBOLS + SYMBOLS).toList().shuffled().joinToString(","))
+fun generateSecretPairs(): List<Char> {
+    var symbolList = listOf<Char>()
+    symbolList = (SYMBOLS + SYMBOLS).toList().shuffled().also { symbolList = it }
     return symbolList
 }
 
 // Retorna uma lista, ou uma String, com SIZE caracteres '_'
-fun generateAllHidden(): List<String> {
+fun generateAllHidden(): List<Char> {
     val underscore = "_".repeat(SIZE)
-    val initList: List<String> = listOf((underscore).toList().joinToString(","))
+    val initList: List<Char> = (underscore).toList()
     return initList
 }
 
@@ -53,8 +53,8 @@ fun startMessage() {
 // Retorna o texto com a tentativa atual no formato: Tentativa <trys>: <showed>
 // Exemplo: "Tentativa 6: [%, %, _, _, _, X, _, X]"
 //      ou: "Tentativa 6: %%___X_X"
-fun textOfTry(a: Int, b: List<String>) {
-    println("Tentativa $a: $b")
+fun textOfTry(a: Int, b: List<Char>) {
+    print("Tentativa $a: $b")
 }
 
 // Lê e retorna a posição do símbolo a virar, introduzida pelo utilizador,
@@ -67,7 +67,7 @@ fun readPosition(position: Int): Int {
 
 // Verifica a validade das duas posições indicadas.
 // Se são indices no intervalo 0..<SIZE de posições escondidas e são diferentes.
-fun isValidPositions(position1: Int, position2: Int, secretPairs: List<String>): Boolean {
+fun isValidPositions(position1: Int, position2: Int, secretPairs: List<Char>): Boolean {
     if ((position1 in secretPairs.indices)) {
         return true
     }
@@ -83,20 +83,25 @@ fun isValidPositions(position1: Int, position2: Int, secretPairs: List<String>):
 }
 
 // Retorna os pares já descobertos mais os símbolos nas posições indicadas.
-fun showPositions(a: List<String>, b: Int, c: Int, d: List<String>): List<String> {
+fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
     a[b] == d[b] && a[c] == d[c]
     return a
 }
 
 // Verifica se todos os pares já foram descobertos
-fun allReveal(showedPairs: List<String>): Boolean {
-
+fun allReveal(showedPairs: List<Char>): Boolean {
+    for (i in 0..(SIZE - 1)) {
+        if (showedPairs[i] in SYMBOLS) {
+            return true
+        }
+    }
+    return false
 }
 
 // Apresenta as duas linhas da mensagem final.
 // 1ª linha: "Esgotou as tentativas." ou "Parabéns, descobriu em <trys> tentativas."
 // 2ª linha:  "Tentativa <trys>: <showed>"
-fun endMessage(t: Int, s: List<String>) {
+fun endMessage(t: Int, s: List<Char>) {
     if (t > MAX_TRIES) {
         println("Esgotou as tentativas.")
     }
