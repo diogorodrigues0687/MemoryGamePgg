@@ -1,4 +1,4 @@
-const val SYMBOLS = "0123" // Símbolos para usar nos pares (configurável).
+const val SYMBOLS = "ඞ⛟⚠☠" // Símbolos para usar nos pares (configurável).
 const val SIZE = SYMBOLS.length * 2 // Número total de posições.
 const val MAX_TRIES = SIZE + 1 // Máximo de tentativas para descobrir os pares.
 fun main() {
@@ -30,8 +30,7 @@ fun printTemporarily(text: String, seconds: Int) {
 
 // Gera uma lista, ou uma String, com os pares de símbolos distribuídos aleatoriamente.
 fun generateSecretPairs(): List<Char> {
-    var symbolList = listOf<Char>()
-    symbolList = (SYMBOLS + SYMBOLS).toList().shuffled().also { symbolList = it }
+    val symbolList: List<Char> = (SYMBOLS + SYMBOLS).toList().shuffled()
     return symbolList
 }
 
@@ -60,7 +59,7 @@ fun textOfTry(a: Int, b: List<Char>) {
 // Lê e retorna a posição do símbolo a virar, introduzida pelo utilizador,
 // fazendo a pergunta: "<n>ª posição a mostrar: "
 fun readPosition(position: Int): Int {
-    println("$position º posição a mostrar:")
+    print("$position ª posição a mostrar: ")
     val userPosition = readln().toInt()
     return userPosition
 }
@@ -68,29 +67,22 @@ fun readPosition(position: Int): Int {
 // Verifica a validade das duas posições indicadas.
 // Se são indices no intervalo 0..<SIZE de posições escondidas e são diferentes.
 fun isValidPositions(position1: Int, position2: Int, secretPairs: List<Char>): Boolean {
-    if ((position1 in secretPairs.indices)) {
-        return true
-    }
-    else if ((position2 in secretPairs.indices)) {
-        return true
-    }
-    else if (position1 != position2) {
-        return true
-    }
+   if (((position1 != position2) && (position1 in secretPairs.indices) && (position2 in secretPairs.indices))) {
+       return true
+   }
     else {
-        return false
-    }
+    return false }
 }
 
 // Retorna os pares já descobertos mais os símbolos nas posições indicadas.
 fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
-    a[b] == d[b] && a[c] == d[c]
+    d[b] == a[b] && d[c] == a[c]
     return a
 }
 
 // Verifica se todos os pares já foram descobertos
 fun allReveal(showedPairs: List<Char>): Boolean {
-    for (i in 0..(SIZE - 1)) {
+    for (i in 0..<SIZE) {
         if (showedPairs[i] in SYMBOLS) {
             return true
         }
