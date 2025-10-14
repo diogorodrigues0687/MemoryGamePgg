@@ -28,6 +28,10 @@ fun printTemporarily(text: String, seconds: Int) {
     print("\r" + " ".repeat(text.length) + "\r") // Apaga o texto
 }
 
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
 // Gera uma lista, ou uma String, com os pares de símbolos distribuídos aleatoriamente.
 fun generateSecretPairs(): List<Char> {
     val symbolList: List<Char> = (SYMBOLS + SYMBOLS).toList().shuffled()
@@ -67,17 +71,19 @@ fun readPosition(position: Int): Int {
 // Verifica a validade das duas posições indicadas.
 // Se são indices no intervalo 0..<SIZE de posições escondidas e são diferentes.
 fun isValidPositions(position1: Int, position2: Int, secretPairs: List<Char>): Boolean {
-   if (((position1 != position2) && (position1 in secretPairs.indices) && (position2 in secretPairs.indices))) {
-       return true
-   }
+    if (((position1 != position2) && (position1 in secretPairs.indices) && (position2 in secretPairs.indices))) {
+        return true
+    }
     else {
     return false }
 }
 
 // Retorna os pares já descobertos mais os símbolos nas posições indicadas.
 fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
-    d[b] == a[b] && d[c] == a[c]
-    return a
+    val showList: MutableList<Char> = a.toMutableList()
+    showList[b] = d[b]
+    showList[c] = d[c]
+    return showList
 }
 
 // Verifica se todos os pares já foram descobertos
