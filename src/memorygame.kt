@@ -6,6 +6,7 @@ fun main() {
     var showedPairs = generateAllHidden() // ex: [_, _, _, _, _, _, _, _]
     var tries = 1
     println(secretPairs)
+    println("Apenas para teste, comentar se necessário")
     startMessage()
     do {
         println(textOfTry(tries, showedPairs))
@@ -42,7 +43,7 @@ fun generateSecretPairs(): List<Char> {
 
 // Retorna uma lista, ou uma String, com SIZE caracteres '_'
 fun generateAllHidden(): List<Char> {
-    val underscore = "_".repeat(SIZE)
+    val underscore = "_".repeat(SIZE) //"________"
     val initList: List<Char> = (underscore).toList()
     return initList
 }
@@ -58,8 +59,8 @@ fun startMessage() {
 // Retorna o texto com a tentativa atual no formato: Tentativa <trys>: <showed>
 // Exemplo: "Tentativa 6: [%, %, _, _, _, X, _, X]"
 //      ou: "Tentativa 6: %%___X_X"
-fun textOfTry(a: Int, b: List<Char>) {
-    print("Tentativa $a: $b")
+fun textOfTry(a: Int, b: List<Char>): String {
+    return "Tentativa $a: $b"
 }
 
 // Lê e retorna a posição do símbolo a virar, introduzida pelo utilizador,
