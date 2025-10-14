@@ -30,7 +30,7 @@ fun printTemporarily(text: String, seconds: Int) {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
+//Código implementado
 
 // Gera uma lista, ou uma String, com os pares de símbolos distribuídos aleatoriamente.
 fun generateSecretPairs(): List<Char> {
