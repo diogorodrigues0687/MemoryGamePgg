@@ -76,9 +76,12 @@ fun isValidPositions(position1: Int, position2: Int, secretPairs: List<Char>): B
 
 // Retorna os pares já descobertos mais os símbolos nas posições indicadas.
 fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
-    d[b] == a[b] && d[c] == a[c]
-    return a
+        val result: MutableList<Char> = a.toMutableList()
+        result[b] = d[b]
+        result[c] = d[c]
+        return result
 }
+
 
 // Verifica se todos os pares já foram descobertos
 fun allReveal(showedPairs: List<Char>): Boolean {
