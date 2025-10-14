@@ -30,7 +30,7 @@ fun printTemporarily(text: String, seconds: Int) {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-//Código implementado1
+//Código implementado
 
 
 // Gera uma lista, ou uma String, com os pares de símbolos distribuídos aleatoriamente.
@@ -89,14 +89,14 @@ fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
 
 // Verifica se todos os pares já foram descobertos
 fun allReveal(showedPairs: List<Char>): Boolean {
-    for (i in 0..<SIZE) {
-        if (showedPairs[i] in SYMBOLS) {
+    for (i in 0..<SIZE - 1) {
+        if (showedPairs[i] != '_') {
             return true
         } else {
             return false
         }
     }
-    return TODO("Provide the return value")
+    return false
 }
 
 // Apresenta as duas linhas da mensagem final.
