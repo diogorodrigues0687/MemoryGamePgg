@@ -5,6 +5,7 @@ fun main() {
     val secretPairs = generateSecretPairs() // ex: [%, %, #, O, O, X, #, X]
     var showedPairs = generateAllHidden() // ex: [_, _, _, _, _, _, _, _]
     var tries = 1
+    println(secretPairs)
     startMessage()
     do {
         println(textOfTry(tries, showedPairs))
@@ -91,12 +92,12 @@ fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
 fun allReveal(showedPairs: List<Char>): Boolean {
     for (i in 0..<SIZE - 1) {
         if (showedPairs[i] != '_') {
-            return true
+            continue
         } else {
             return false
         }
     }
-    return false
+    return true
 }
 
 // Apresenta as duas linhas da mensagem final.
