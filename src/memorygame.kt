@@ -41,8 +41,8 @@ fun printTemporarily(text: String, seconds: Int) {
  * .shuffled() baralha os caracteres.
  * A lista de caracteres retornada é symbolList.**/
 fun generateSecretPairs(): List<Char> {
-    val symbolList: List<Char> = (SYMBOLS + SYMBOLS).toList().shuffled()
-    return symbolList
+    val symbolList: List<Char> = (SYMBOLS + SYMBOLS).toList().shuffled() //"ඞ⛟⚠☠" + "ඞ⛟⚠☠" = "ඞ⛟⚠☠ඞ⛟⚠☠"; ඞ⛟ඞ☠⚠⚠⛟☠
+    return symbolList //ex: [ඞ, ⛟, ඞ, ☠, ⚠, ⚠, ⛟, ☠]
 }
 
 /** Retorna uma lista, ou uma String, com SIZE caracteres '_'.
@@ -51,9 +51,9 @@ fun generateSecretPairs(): List<Char> {
  * A val initList vai então incluir o underscore ("________") por meio de .toList().
  * A lista de caracteres retornada é initList.**/
 fun generateAllHidden(): List<Char> {
-    val underscore = "_".repeat(SIZE)
-    val initList: List<Char> = (underscore).toList()
-    return initList
+    val underscore = "_".repeat(SIZE) //"________"
+    val initList: List<Char> = (underscore).toList() //"________" -> [_, _, _, _, _, _, _, _]
+    return initList //[_, _, _, _, _, _, _, _]
 }
 
 /** Apresenta as duas linhas da mensagem inicial.
@@ -61,8 +61,8 @@ fun generateAllHidden(): List<Char> {
 2ª linha: Vamos descobrir os pares em <m> tentativas!
  É usada a função println() para exibir as mensagens na consola.**/
 fun startMessage() {
-    println("Foram gerados ${SIZE/2} pares aleatórios de símbolos.")
-    println("Vamos descobrir os pares em ${SIZE + 1} tentativas!")
+    println("Foram gerados ${SIZE/2} pares aleatórios de símbolos.") //4
+    println("Vamos descobrir os pares em ${SIZE + 1} tentativas!") //9
 }
 
 /** Retorna uma string (texto) com a tentativa atual no formato: Tentativa <trys>: <showed>
@@ -86,10 +86,10 @@ fun readPosition(position: Int): Int {
  Se são indices no intervalo 0..<SIZE de posições escondidas e são diferentes.
  A instrução if recebe como expressão as condições já referidas, e retorna um valor booleano (True). Todos os que não cumprem a condição são retornados como falso.**/
 fun isValidPositions(position1: Int, position2: Int, secretPairs: List<Char>): Boolean {
-    if (((position1 != position2) && (position1 in secretPairs.indices) && (position2 in secretPairs.indices))) {
+    if (((position1 != position2) && (position1 in secretPairs.indices) && (position2 in secretPairs.indices))) { //ex: 1 != 1, 1 in 0..7, 2 in 0..7
         return true
     }
-    else {
+    else { //ex: 2 = 2, position1 ou position2 = 9
     return false }
 }
 
@@ -99,8 +99,8 @@ fun isValidPositions(position1: Int, position2: Int, secretPairs: List<Char>): B
  * Cada elemento localizado no indice da lista (showList) correspondente á posição inserida será substituido pelos elementos de secretpairs (d).
  * Retorna a lista modificada (showList).**/
 fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
-    val showList: MutableList<Char> = a.toMutableList()
-    showList[b] = d[b]
+    val showList: MutableList<Char> = a.toMutableList() //Permite adicionar, alterar ou remover elementos. List<> é imutável.
+    showList[b] = d[b] //ex: b = 2, c = 5; [_, _, _, _, _, _, _, _] -> [_, _, ඞ, _, _, ⚠, _, _]
     showList[c] = d[c]
     return showList
 }
@@ -108,7 +108,7 @@ fun showPositions(a: List<Char>, b: Int, c: Int, d: List<Char>): List<Char> {
 /** Verifica se todos os pares já foram descobertos
  * O ciclo for percorre todos os indices em showedPairs e verifica se cada respetivo caracter é diferente de underscore ("_"). Retorna true se todos os elementos forem diferentes de underscore, e retorna falso se pelo menos um índice estiver por ser descoberto ("_").**/
 fun allReveal(showedPairs: List<Char>): Boolean {
-    for (i in 0..<SIZE - 1) {
+    for (i in 0..<SIZE - 1) { //0 a 7
         if (showedPairs[i] != '_') {
             continue
         } else {
